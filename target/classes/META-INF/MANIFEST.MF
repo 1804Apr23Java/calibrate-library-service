@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: shivam
+Build-Jdk: 10.0.1
+Implementation-Title: SpringBootTest
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.revature.libraryservice
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Calib-library-service
+Created-By: Maven Integration for Eclipse
+
