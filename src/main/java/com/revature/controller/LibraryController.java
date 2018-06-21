@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Library;
-import com.revature.repository.LibraryRepository;
+import com.revature.beans.Status;
 import com.revature.service.AccountService;
 import com.revature.service.LibraryService;
 
 @RestController
 public class LibraryController {
 
-	@Autowired
-	LibraryRepository libraryrepository;
+	
 
 	@Autowired
 	AccountService accountService;
@@ -39,16 +38,27 @@ public class LibraryController {
 		return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.OK);
 	}
 
-	// 
+	
+	
 	@GetMapping(path = "/status/{statusreport}")
-	public ResponseEntity<List<Library>> getPendingLibrary(@PathVariable String statusreport) {
+	public ResponseEntity<List<Library>> getReportLibrary(@PathVariable String statusreport) {
 		return new ResponseEntity<>(libraryservice.getLibraryStatusReport(statusreport), HttpStatus.OK);
 
 	}
-	@GetMapping(path = "/status/{pend}")
-	public ResponseEntity<List<Library>> getPendingLibrary(@PathVariable int pend) {
-		return new ResponseEntity<>(libraryservice.getLibraryPend(pend), HttpStatus.OK);
-
+		
+	@GetMapping(path = "/status/pending")
+	public ResponseEntity<List<Library>> getpendLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryPend(Status.PENDING), HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/status/private")
+	public ResponseEntity<List<Library>> getPrivateLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryPend(Status.PRIVATE), HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/status/public")
+	public ResponseEntity<List<Library>> getPublicLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryPend(Status.PUBLIC), HttpStatus.OK);
 	}
 
 	
