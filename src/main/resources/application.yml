@@ -1,5 +1,5 @@
-
-
+server:
+  port: 8081
 spring:
   application:
     name: library-service
@@ -19,3 +19,4 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+

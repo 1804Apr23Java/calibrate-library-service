@@ -3,22 +3,23 @@ package com.revature.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.beans.Library;
-import com.revature.beans.Status;
 
 @Repository
 public interface LibraryRepository extends JpaRepository<Library, Integer> {
 
+	// Find Library by Id
 	public Library findLibraryById(int id);
 
-	public List<Library> findLibraryByStatus(Status status);
+	// Find Library by the Status ( Private, Public, Pending )
+	public List<Library> findLibraryByStatus(String status);
 
-	@Query(value = "SELECT * FROM LIBRARY WHERE STATUS = ?1", nativeQuery = true)
-	public List<Library> pendLibrary(String status);
+	// Find Library by the Account_ID
+	public Library findLibraryByAccountId(Integer accountId);
 	
-	public Library findLibraryByAccountId(int accoundId);
+	//Delete Library by Library_ID	
+	public boolean deleteLibraryById(int id);
 
 }

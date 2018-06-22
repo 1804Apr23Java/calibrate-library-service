@@ -1,5 +1,5 @@
-server:
-  port: 8081
+
+
 spring:
   application:
     name: library-service
@@ -16,7 +16,4 @@ spring:
         show-sql: true
         format-sql: true
         ddl-auto: update
-  jackson:
-    serialization:
-      fail-on-empty-beans: false
-
+ 
