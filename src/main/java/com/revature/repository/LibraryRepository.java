@@ -20,6 +20,8 @@ public interface LibraryRepository extends JpaRepository<Library, Integer> {
 	public Library findLibraryByAccountId(Integer accountId);
 	
 	//Delete Library by Library_ID	
-	public boolean deleteLibraryById(int id);
+	public void deleteLibraryById(Integer id);
+	
+	
 
 }

@@ -1,6 +1,9 @@
 package com.revature.service;
 
+
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import com.revature.beans.Library;
 import com.revature.repository.LibraryRepository;
 
 @Service
+@Transactional
 public class LibraryService {
 
 	@Autowired
@@ -32,9 +36,15 @@ public class LibraryService {
 		return libraryrepository.save(library);
 	}
 
-	public boolean deleteLibraryById(int id) {			
-		return libraryrepository.deleteLibraryById(id);
-				
+	public Library updateLibrary(int id, String status) {
+		Library lib = libraryrepository.getOne(id);
+		lib.setStatus(status);
+		return libraryrepository.save(lib);
+	}
+
+	public void deleteLibraryById(int id) {
+		libraryrepository.deleteLibraryById(id);
+			
 	}
 
 }

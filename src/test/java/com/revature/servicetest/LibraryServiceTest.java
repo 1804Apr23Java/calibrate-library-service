@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,19 @@ public class LibraryServiceTest {
 	public void getLibrariesByAccountIDTest() {
 		List<Library> lib=libraryservice.getLibrariesByAccountID(1);		
 		assertEquals(2,lib.size());
+	}
+	
+	@Test
+	@Transactional 
+	public void updateLibraryTest() {
+		String status = "pending";
+		int id = 2;
+		//Get library and then get the status
+		Library lib = libraryservice.updateLibrary(id, status);
+		Library lib1 = libraryservice.getLibrariesById(2);	
+		System.out.println("Test");
+		assertEquals(status,lib.getStatus());
+		
 	}
 	
 }

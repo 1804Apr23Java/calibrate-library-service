@@ -51,17 +51,22 @@ public class LibraryController {
 		return new ResponseEntity<>(libraryservice.getLibrariesByAccountID(accountId),HttpStatus.OK);
 	}
 
-	//Test is for adding 
+	
 	@PostMapping("/new")
 	public ResponseEntity<Library> createLibrary(@RequestBody Library library) {		
 		return new ResponseEntity<>(libraryservice.addNewLibrary(library),HttpStatus.OK);	
 		}
 
-	@GetMapping("/delete/{id}")
-	public ResponseEntity<Boolean> deleteLibrarybyId(@PathVariable int id){
-		return new ResponseEntity<Boolean>(libraryservice.deleteLibraryById(id),HttpStatus.OK);
+	@PostMapping("/delete/{id}")
+	public  void deleteLibrary(@PathVariable int id){
+		System.out.println(id);
+		libraryservice.deleteLibraryById(id);
+		
 	}
 
-	// @GetMapping("/id/{id}/status/{status}")
-
+	@PostMapping ("/id/{id}/status/{status}")
+	public ResponseEntity<Library> updateLibrarybyId(@PathVariable int id, @PathVariable String status){
+		return new ResponseEntity<> (libraryservice.updateLibrary(id, status),HttpStatus.OK);		
+	}
+	
 }
