@@ -44,10 +44,19 @@ public class LibraryServiceTest {
 		
 	}
 	
+	@Test(expected = JpaObjectRetrievalFailureException.class)
+	@Transactional	
+	public void deleteLibraryTest() {
+		libraryservice.deleteLibraryById(3);		
+		Library lib = libraryservice.getLibrariesById(3);		
+		
+	}
+	
+	
 	@Test
 	public void getLibrariesByAccountIDTest() {
 		List<Library> lib=libraryservice.getLibrariesByAccountID(1);		
-		assertEquals(2,lib.size());
+		assertEquals(3,lib.size());
 	}
 	
 	@Test
@@ -63,12 +72,6 @@ public class LibraryServiceTest {
 		
 	}
 	
-	@Test(expected = JpaObjectRetrievalFailureException.class)
-	@Transactional	
-	public void deleteLibraryTest() {
-		libraryservice.deleteLibraryById(3);		
-		Library lib = libraryservice.getLibrariesById(3);		
-		
-	}
+
 	
 }
