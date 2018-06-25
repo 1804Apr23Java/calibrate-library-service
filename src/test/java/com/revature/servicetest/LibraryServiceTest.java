@@ -1,16 +1,20 @@
 package com.revature.servicetest;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.beans.Library;
@@ -56,6 +60,14 @@ public class LibraryServiceTest {
 		Library lib1 = libraryservice.getLibrariesById(2);	
 		System.out.println("Test");
 		assertEquals(status,lib.getStatus());
+		
+	}
+	
+	@Test(expected = JpaObjectRetrievalFailureException.class)
+	@Transactional	
+	public void deleteLibraryTest() {
+		libraryservice.deleteLibraryById(3);		
+		Library lib = libraryservice.getLibrariesById(3);		
 		
 	}
 	

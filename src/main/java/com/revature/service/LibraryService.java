@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Library;
+import com.revature.beans.Status;
 import com.revature.repository.LibraryRepository;
 
 @Service
@@ -43,8 +44,7 @@ public class LibraryService {
 	}
 
 	public void deleteLibraryById(int id) {
-		libraryrepository.deleteLibraryById(id);
-			
+		libraryrepository.deleteLibraryById(id);			
 	}
 
 }
