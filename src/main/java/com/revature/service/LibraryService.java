@@ -24,7 +24,7 @@ public class LibraryService {
 	}
 
 	public List<Library> getLibraryByStatus(Status status) {
-		List<Library> lib = libraryRepository.findLibrarysByStatus(Status.PENDING);
+		List<Library> lib = libraryRepository.findLibrarysByStatus(status);
 		return lib;
 	}
 
