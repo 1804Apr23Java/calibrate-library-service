@@ -17,16 +17,17 @@ public class Library {
 
 	private int id;
 	private String name;
-	private String status;
+	private Status status;
 	private Integer accountId;
 	private Integer numberOfQuestion;
-
+	
+	
 	public Library() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Library(int id, String name, String status, Integer accountId, Integer numberOfQuestion) {
+	public Library(int id, String name, Status status, Integer accountId, Integer numberOfQuestion) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,7 +36,7 @@ public class Library {
 		this.setNumberOfQuestion(numberOfQuestion);
 	}
 
-	public Library(String name, String status, Integer accountId, Integer numberOfQuestion) {
+	public Library(String name, Status status, Integer accountId, Integer numberOfQuestion) {
 		super();
 		this.name = name;
 		this.status = status;
@@ -46,7 +47,7 @@ public class Library {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "librarySequence")
 	@SequenceGenerator(allocationSize = 1, name = "librarySequence", sequenceName = "SQ_LIBRARY_PK")
-	@Column(name = "LIBRARY_ID")
+	@Column(name = "LIBRARY_ID", nullable =false)
 	public int getId() {
 		return id;
 	}
@@ -65,11 +66,11 @@ public class Library {
 	}
 
 	@Column(name = "STATUS", nullable = false)
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

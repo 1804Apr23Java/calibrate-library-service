@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.revature.beans.Library;
+import com.revature.beans.Status;
+import com.revature.dto.LibraryDTO;
 import com.revature.service.LibraryService;
 
+@CrossOrigin
 @RestController
 public class LibraryController {
 
-	
+
 
 	@Autowired
 	LibraryService libraryservice;
@@ -33,17 +37,35 @@ public class LibraryController {
 	// Get Library By library Id
 	@GetMapping(path = "/id/{id}")
 	public ResponseEntity<Library> getpublic(@PathVariable int id) {
-		return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.OK);
+		if (id == 0) {
+			return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.BAD_REQUEST);
+		} else
+			return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.OK);
 	}
-
 	
 	
 	@GetMapping(path = "/status/{status}")
-	public ResponseEntity<List<Library>> getReportLibrary(@PathVariable String status) {
+	public ResponseEntity<List<Library>> getReportLibrary(@PathVariable Status status) {
 		return new ResponseEntity<>(libraryservice.getLibraryStatus(status), HttpStatus.OK);
 
 	}
-		
+	
+	@GetMapping(path = "/status/pending")
+	public ResponseEntity<List<Library>> getpendingLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PENDING), HttpStatus.OK);
+
+	}
+	
+	@GetMapping(path = "/status/private")
+	public ResponseEntity<List<Library>> getprivateLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PRIVATE), HttpStatus.OK);
+
+	}
+	@GetMapping(path = "/status/public")
+	public ResponseEntity<List<Library>> getpublicLibrary() {
+		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PUBLIC), HttpStatus.OK);
+
+	}
 		
 	// Get the list of Library by the accountId
 	@GetMapping("/byaccountId/{accountId}")
@@ -65,7 +87,7 @@ public class LibraryController {
 	}
 
 	@PostMapping ("/id/{id}/status/{status}")
-	public ResponseEntity<Library> updateLibrarybyId(@PathVariable int id, @PathVariable String status){
+	public ResponseEntity<Library> updateLibrarybyId(@PathVariable int id, @PathVariable Status status){
 		return new ResponseEntity<> (libraryservice.updateLibrary(id, status),HttpStatus.OK);		
 	}
 	

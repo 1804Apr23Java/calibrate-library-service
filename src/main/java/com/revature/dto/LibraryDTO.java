@@ -1,23 +1,26 @@
 package com.revature.dto;
 
-import java.util.Set;
+
 
 import com.revature.beans.Library;
+import com.revature.beans.Status;
 
 public class LibraryDTO {
 
 	private int id;
 	private String name;
-	private String status;
+	private Status status;
 	private Integer accountId;
 	private Integer numberOfQuestion;
+	
+	
 
 	public LibraryDTO() {
 		super();
 		
 	}
 
-	public LibraryDTO(int id, String name, String status, Integer accountId,Integer numberOfQuestion) {
+	public LibraryDTO(int id, String name, Status status, Integer accountId,Integer numberOfQuestion) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -26,7 +29,7 @@ public class LibraryDTO {
 		this.numberOfQuestion = numberOfQuestion;
 	}
 
-	public LibraryDTO(String name, String status, Integer accountId, Integer numberOfQuestion) {
+	public LibraryDTO(String name, Status status, Integer accountId, Integer numberOfQuestion) {
 		super();
 		this.name = name;
 		this.status = status;
@@ -58,11 +61,11 @@ public class LibraryDTO {
 		this.name = name;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

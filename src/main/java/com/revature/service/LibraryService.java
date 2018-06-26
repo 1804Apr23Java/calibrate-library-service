@@ -11,21 +11,31 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.revature.beans.Library;
 import com.revature.beans.Status;
+import com.revature.beans.StatusConverter;
+import com.revature.dto.LibraryDTO;
 import com.revature.repository.LibraryRepository;
 
 @Service
 @Transactional
 public class LibraryService {
 
+
+	
 	@Autowired
 	LibraryRepository libraryrepository;
 
 	public Library getLibrariesById(int libraryId) {
-		return libraryrepository.getOne(libraryId);
+		if (libraryId == 0) {
+			System.out.println("Invalid LibraryId");
+			return null;
+		} else {
+			return libraryrepository.getOne(libraryId);
+
+		}
 	}
 
-	public List<Library> getLibraryStatus(String status) {
-		List<Library> lib = libraryrepository.findLibraryByStatus(status);
+	public List<Library> getLibraryStatus(Status status) {
+		List<Library> lib = libraryrepository.findLibraryByStatus(Status.PENDING);
 		return lib;
 	}
 
@@ -38,7 +48,7 @@ public class LibraryService {
 		return libraryrepository.save(library);
 	}
 
-	public Library updateLibrary(int id, String status) {
+	public Library updateLibrary(int id, Status status) {
 		Library lib = libraryrepository.getOne(id);
 		lib.setStatus(status);
 		return libraryrepository.save(lib);
