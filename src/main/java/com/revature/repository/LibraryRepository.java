@@ -1,8 +1,8 @@
 package com.revature.repository;
 
 import java.util.List;
+import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,14 +17,12 @@ public interface LibraryRepository extends JpaRepository<Library, Integer> {
 	public Library findLibraryById(int id);
 
 	// Find Library by the Status ( Private, Public, Pending )
-	public List<Library> findLibraryByStatus(Status status);
-
-	// Find Library by the Account_ID
-	public Library findLibraryByAccountId(Integer accountId);
+	public List<Library> findLibrarysByStatus(Status status);
 	
-	//Delete Library by Library_ID	
-	public void deleteLibraryById(Integer id);
+	//Find all libraries by account id
+	public Set<Library> findByAccountId(Integer id);
 	
+	//public int deleteById(int id);
 	
 
 }

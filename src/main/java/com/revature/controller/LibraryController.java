@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,13 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import com.revature.beans.Library;
 import com.revature.beans.Status;
-import com.revature.dto.LibraryDTO;
 import com.revature.service.LibraryService;
 
 @CrossOrigin
@@ -37,40 +35,30 @@ public class LibraryController {
 	// Get Library By library Id
 	@GetMapping(path = "/id/{id}")
 	public ResponseEntity<Library> getpublic(@PathVariable int id) {
-		if (id == 0) {
-			return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.BAD_REQUEST);
-		} else
-			return new ResponseEntity<Library>(libraryservice.getLibrariesById(id), HttpStatus.OK);
+				return new ResponseEntity<Library>(libraryservice.getLibraryById(id), HttpStatus.OK);
 	}
-	
-	
-	@GetMapping(path = "/status/{status}")
-	public ResponseEntity<List<Library>> getReportLibrary(@PathVariable Status status) {
-		return new ResponseEntity<>(libraryservice.getLibraryStatus(status), HttpStatus.OK);
-
-	}
-	
+		
 	@GetMapping(path = "/status/pending")
 	public ResponseEntity<List<Library>> getpendingLibrary() {
-		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PENDING), HttpStatus.OK);
+		return new ResponseEntity<>(libraryservice.getLibraryByStatus(Status.PENDING), HttpStatus.OK);
 
 	}
 	
 	@GetMapping(path = "/status/private")
 	public ResponseEntity<List<Library>> getprivateLibrary() {
-		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PRIVATE), HttpStatus.OK);
+		return new ResponseEntity<>(libraryservice.getLibraryByStatus(Status.PRIVATE), HttpStatus.OK);
 
 	}
 	@GetMapping(path = "/status/public")
 	public ResponseEntity<List<Library>> getpublicLibrary() {
-		return new ResponseEntity<>(libraryservice.getLibraryStatus(Status.PUBLIC), HttpStatus.OK);
+		return new ResponseEntity<>(libraryservice.getLibraryByStatus(Status.PUBLIC), HttpStatus.OK);
 
 	}
 		
 	// Get the list of Library by the accountId
 	@GetMapping("/byaccountId/{accountId}")
-	public ResponseEntity<List<Library>> getLibraryByAccountId(@PathVariable int accountId) {
-		return new ResponseEntity<>(libraryservice.getLibrariesByAccountID(accountId),HttpStatus.OK);
+	public ResponseEntity<Set<Library>> getLibraryByAccountId(@PathVariable int accountId) {
+		return new ResponseEntity<>(libraryservice.getLibrariesByAccountId(accountId),HttpStatus.OK);
 	}
 
 	

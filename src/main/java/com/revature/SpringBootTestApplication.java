@@ -7,8 +7,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Configuration
 @SpringBootApplication
 @EnableJpaRepositories
