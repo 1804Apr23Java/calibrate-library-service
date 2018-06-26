@@ -25,8 +25,7 @@ import com.revature.service.LibraryService;
 @SpringBootTest
 public class LibraryServiceTest {
 	
-	@Autowired
-	Status status;
+
 
 	@Autowired
 	LibraryService libraryservice;
