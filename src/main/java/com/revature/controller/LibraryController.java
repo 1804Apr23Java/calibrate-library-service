@@ -86,7 +86,7 @@ public class LibraryController {
 	}
 
 	@PatchMapping("/makePrivate")
-	public ResponseEntity<LibraryDTO> makeLibraryPrivate(@RequestBody Integer libraryId) {
+	public ResponseEntity<LibraryDTO> makeLibraryPrivate(@RequestBody int libraryId) {
 		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(libraryId, Status.PRIVATE)),
 				HttpStatus.OK);
 	}
