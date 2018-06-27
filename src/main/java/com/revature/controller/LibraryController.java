@@ -27,14 +27,9 @@ public class LibraryController {
 	@Autowired
 	LibraryService libraryService;
 
-	// Testing to find the name of the service
-	@GetMapping(path = "/findservice")
-	public String helloWorld() {
-		return "Hello from Library";
-	}
 
 	// Get Library By library Id
-	@GetMapping(path = "/id/{id}")
+	@GetMapping(path = "/libraryid/{id}")
 	public ResponseEntity<LibraryDTO> getpublic(@PathVariable int id) {
 		Library library = libraryService.getLibraryById(id);
 		return new ResponseEntity<LibraryDTO>(new LibraryDTO(library), HttpStatus.OK);
