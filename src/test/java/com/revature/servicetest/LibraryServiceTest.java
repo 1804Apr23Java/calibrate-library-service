@@ -1,6 +1,7 @@
 package com.revature.servicetest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.beans.Library;
 import com.revature.beans.Status;
 import com.revature.service.LibraryService;
+
+import junit.framework.Assert;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -32,13 +35,14 @@ public class LibraryServiceTest {
 		libraryService.addNewLibrary(lib);
 		assertEquals(3, libraryService.getLibraryById(3).getId());
 	}
-//
-//	@Test(expected=EntityNotFoundException.class)
+
+//	@Test
 //	public void deleteLibraryTest() {
 //		Library library = libraryService.addNewLibrary(new Library ("Newest Library", Status.PRIVATE, 45, 0));
 //		libraryService.deleteLibraryById(library.getId());
 //		System.out.println(libraryService.getLibraryById(library.getId()));
-//
+//		System.out.println("test");
+//		assertNull(library.getId());
 //	}
 
 	@Test
@@ -47,6 +51,7 @@ public class LibraryServiceTest {
 		libraryService.addNewLibrary(new Library("New Library 2", Status.PUBLIC, 12, 0));
 		libraryService.addNewLibrary(new Library("New Library 3", Status.PENDING, 12, 0));
 		Set<Library> libraries = libraryService.getLibrariesByAccountId(12);
+		
 		assertEquals(3, libraries.size());
 	}
 

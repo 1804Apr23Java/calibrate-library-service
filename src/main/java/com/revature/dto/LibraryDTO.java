@@ -7,11 +7,11 @@ import com.revature.beans.Status;
 
 public class LibraryDTO {
 
-	private int id;
+	private int libraryId;
 	private String name;
 	private Status status;
 	private Integer accountId;
-	private Integer numberOfQuestion;
+	private Integer numberOfQuestions;
 	
 	
 
@@ -20,37 +20,38 @@ public class LibraryDTO {
 		
 	}
 
-	public LibraryDTO(int id, String name, Status status, Integer accountId,Integer numberOfQuestion) {
+	public LibraryDTO(int id, String name, Status status, Integer accountId,Integer numberOfQuestions) {
 		super();
-		this.id = id;
+		this.libraryId = id;
 		this.name = name;
 		this.status = status;
 		this.accountId = accountId;
-		this.numberOfQuestion = numberOfQuestion;
+		this.numberOfQuestions = numberOfQuestions;
 	}
 
-	public LibraryDTO(String name, Status status, Integer accountId, Integer numberOfQuestion) {
+	public LibraryDTO(String name, Status status, Integer accountId, Integer numberOfQuestions) {
 		super();
 		this.name = name;
 		this.status = status;
 		this.accountId = accountId;
-		this.numberOfQuestion = numberOfQuestion;
+		this.numberOfQuestions = numberOfQuestions;
 	}
 	
 	public LibraryDTO (Library library) {
 		super();
-		this.id=library.getId();
+		this.libraryId=library.getId();
 		this.name=library.getName();
 		this.status=library.getStatus();
 		this.accountId=library.getAccountId();
-		this.numberOfQuestion=library.getNumberOfQuestion();
-	}
-	public int getId() {
-		return id;
+		this.numberOfQuestions=library.getNumberOfQuestions();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getLibraryId() {
+		return libraryId;
+	}
+
+	public void setLibraryId(int libraryId) {
+		this.libraryId = libraryId;
 	}
 
 	public String getName() {
@@ -77,17 +78,13 @@ public class LibraryDTO {
 		this.accountId = accountId;
 	}
 
-	public Integer getNumberOfQuestion() {
-		return numberOfQuestion;
+	public Integer getNumberOfQuestions() {
+		return numberOfQuestions;
 	}
 
-	public void setNumberOfQuestion(Integer numberOfQuestion) {
-		this.numberOfQuestion = numberOfQuestion;
+	public void setNumberOfQuestions(Integer numberOfQuestions) {
+		this.numberOfQuestions = numberOfQuestions;
 	}
-
-
 	
-	
-
 	
 }
