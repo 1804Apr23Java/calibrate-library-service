@@ -22,7 +22,7 @@ public interface LibraryRepository extends JpaRepository<Library, Integer> {
 	//Find all libraries by account id
 	public Set<Library> findByAccountId(Integer id);
 	
-	//public int deleteById(int id);
+	//public int deleteById(Integer id);
 	
 
 }

@@ -1,7 +1,6 @@
 package com.revature.servicetest;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import java.util.Set;
 
@@ -15,8 +14,6 @@ import com.revature.beans.Library;
 import com.revature.beans.Status;
 import com.revature.service.LibraryService;
 
-import junit.framework.Assert;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class LibraryServiceTest {
@@ -24,10 +21,6 @@ public class LibraryServiceTest {
 	@Autowired
 	LibraryService libraryService;
 
-	@Test
-	public void getByIdTest() {
-		assertEquals(1, libraryService.getLibraryById(1).getId());
-	}
 
 	@Test
 	public void addNewLibraryTest() {
@@ -36,14 +29,30 @@ public class LibraryServiceTest {
 		assertEquals(3, libraryService.getLibraryById(3).getId());
 	}
 
-//	@Test
-//	public void deleteLibraryTest() {
-//		Library library = libraryService.addNewLibrary(new Library ("Newest Library", Status.PRIVATE, 45, 0));
-//		libraryService.deleteLibraryById(library.getId());
-//		System.out.println(libraryService.getLibraryById(library.getId()));
-//		System.out.println("test");
-//		assertNull(library.getId());
-//	}
+
+	@Test
+	public void getByIdTest() {
+		Library lib = new Library("Hibernate", Status.PENDING, 1, 10);
+		libraryService.addNewLibrary(lib);
+		System.out.println(lib.getId());
+		assertEquals(1, libraryService.getLibraryById(1).getId());
+	}
+	@Test
+	public void deleteLibraryTest() {
+	
+		libraryService.addNewLibrary(new Library("New Library 4", Status.PRIVATE, 1000, 0));
+		libraryService.addNewLibrary(new Library("New Library 5", Status.PUBLIC, 1000, 0));
+		Library lib=libraryService.addNewLibrary(new Library("New Library 6", Status.PENDING, 1000, 0));
+		libraryService.deleteLibraryById(lib.getId());
+		Set<Library> libraries = libraryService.getLibrariesByAccountId(1000);
+		
+		
+		for (Library libr : libraries) {
+			System.out.println(libr.getId());
+		}
+		
+		assertEquals(2, libraries.size());
+	}
 
 	@Test
 	public void getLibrariesByAccountIdTest() {
@@ -57,8 +66,6 @@ public class LibraryServiceTest {
 
 	@Test
 	public void updateLibraryTest() {
-		//String status = "PENDING";
-		// Get library and then get the status
 		Library library = libraryService.addNewLibrary(new Library("New Library", Status.PENDING, 34, 0));
 		libraryService.getLibraryById(library.getId());
 		assertEquals(Status.PENDING, library.getStatus());
