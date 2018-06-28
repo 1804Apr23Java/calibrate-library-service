@@ -35,22 +35,7 @@ public class controllertest {
 
 	}
 
-	@Test
-	public void addLibrariesTest() throws JsonParseException, JsonMappingException, IOException {
 
-		 RestAssured.port = 8766;
-		 RequestSpecification request = RestAssured.given();
-		 Library lib = libraryService.addNewLibrary(new Library("New Library 4",
-		 Status.PRIVATE, 1000, 0));
-		 request.contentType("application/json");
-		 Response response = request.get("/libraryid/" + lib.getId());
-		
-		 System.out.println("StatusCode ************"+ response.getStatusCode() + "**"
-		 +lib.getAccountId());
-		 assertEquals(200, response.getStatusCode());
-
-		
-	}
 	@Test
 	public void getPendingLibrariestest() throws JsonParseException, JsonMappingException, IOException {
 
